@@ -33,15 +33,23 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         # 300, 120, 60, 15
         self.assertEqual(sum([300, 120, 60, 15]), checkout_solution.checkout(test_string))
 
-    def test_more_bs_are_added_when_atleast_2_es_are_bought(self):
+    def test_more_bs_are_removed_when_atleast_2_es_are_bought(self):
         test_string = "ABCDEE"
         # 50, 45, 20, 15, 80
         self.assertEqual(sum([50, 20, 15, 80]), checkout_solution.checkout(test_string))
 
-    def test_stuff(self):
+    def test_multiple_es(self):
         test_string = "EEEB"
         # 50, 45, 20, 15, 80
         self.assertEqual(120, checkout_solution.checkout(test_string))
+
+        test_string = "EEB"
+        # 50, 45, 20, 15, 80
+        self.assertEqual(80, checkout_solution.checkout(test_string))
+
+        test_string = "EE"
+        # 50, 45, 20, 15, 80
+        self.assertEqual(80, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':

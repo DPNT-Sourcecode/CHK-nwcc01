@@ -103,6 +103,9 @@ def calculate_cost_of_b_item(supermarket_item_dict: dict) -> int:
         else:
             total_cost_b = (math.floor(quantity_b / bulk_quantity_b) * bulk_price_b) \
                            + ((quantity_b % bulk_quantity_b) * cost_b_single)
+    elif quantity_b < 0:
+        total_cost_b = 0
+        return total_cost_b
     else:
         total_cost_b = quantity_b * cost_b_single
 
@@ -135,3 +138,4 @@ def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
     total_cost_e = quantity_e * cost_e_single
 
     return (total_cost_e, number_of_bs_free)
+
