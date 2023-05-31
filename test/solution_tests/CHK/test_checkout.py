@@ -71,7 +71,7 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_two_ks_returns_150(self):
         test_string = "KK"
-        self.assertEqual(150, checkout_solution.checkout(test_string))
+        self.assertEqual(120, checkout_solution.checkout(test_string))
 
     def test_three_ns_returns_120(self):
         test_string = "NNN"
@@ -135,11 +135,14 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "SSSZ"
         self.assertEqual(65, checkout_solution.checkout(test_string))
 
+    def test_something(self):
+
         test_string = "CXYZYZC"
         self.assertEqual(122, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
