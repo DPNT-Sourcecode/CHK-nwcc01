@@ -95,8 +95,21 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "RRRQQQ"
         self.assertEqual(210, checkout_solution.checkout(test_string))
 
+    def test_four_us_returns_120(self):
+        test_string = "UUUU"
+        self.assertEqual(120, checkout_solution.checkout(test_string))
+
+    def test_two_vs_return_90(self):
+        test_string = "VV"
+        self.assertEqual(90, checkout_solution.checkout(test_string))
+
+    def test_three_vs_return_130(self):
+        test_string = "VVV"
+        self.assertEqual(130, checkout_solution.checkout(test_string))
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
