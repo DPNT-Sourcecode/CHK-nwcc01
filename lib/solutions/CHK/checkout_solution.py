@@ -67,9 +67,10 @@ def parse_string(skus: str) -> Union[int, dict]:
 
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
-    
     for char in skus:
-        if char != "A" and char != "B" and char != "C" and char != "D" and char != "E" and char != "F":
+        quantity = supermarket_item_dict.get(char, None)
+        if quantity == None:
+        # if char != "A" and char != "B" and char != "C" and char != "D" and char != "E" and char != "F":
             return -1
         else:
             supermarket_item_dict[char] += 1
@@ -184,3 +185,4 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
 
 # def calculate_the_easy_ones(supermarket_item_dict: dict) -> int:
 #     total_c = supermarket_item_dict["C"] *
+
