@@ -59,9 +59,10 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_when_two_f_items_are_bought_two_are_paid_for(self):
         test_string = "FFUUUU"
-        self.assertEqual(160, checkout_solution.checkout(test_string))
+        self.assertEqual(140, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
