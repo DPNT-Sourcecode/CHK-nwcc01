@@ -53,7 +53,6 @@ def checkout(skus: str) -> int:
 
     supermarket_item_dict["B"][0] -= number_of_bs_free
     # total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
-    # simple_deal_cost = simple_price_calculation()
 
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
@@ -231,4 +230,5 @@ def single_deal_calculation(product_price: int, product_deal_price: int, deal_qu
         total_cost = quantity * product_price
 
     return total_cost
+
 
