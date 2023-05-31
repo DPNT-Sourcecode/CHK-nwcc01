@@ -32,11 +32,12 @@ def checkout(skus: str) -> int:
             data = supermarket_item_dict.get(product_name)
             product_price = data[1]
             quantity = data[0]
+            free_product_name = data[3][1]
             deal_quantity = data[3][0]
             returned_data = other_item_free_deal_calculation(quantity, deal_quantity, product_price)
             free_deal_1_total += returned_data[0]
             quantity_of_free_items = returned_data[1]
-            supermarket_item_dict[product_name][0] -= quantity_of_free_items
+            supermarket_item_dict[free_product_name][0] -= quantity_of_free_items
 
         elif supermarket_item_dict[product_name][2] == "single":
             data = supermarket_item_dict.get(product_name)
@@ -249,6 +250,7 @@ def other_item_free_deal_calculation(quantity: int, deal_quantity: int, product_
     total_cost = quantity * product_price
 
     return total_cost, number_of_free_items
+
 
 
 
