@@ -222,9 +222,8 @@ def group_deal_calculation(group_deal_dict: dict) -> int:
         while total_quantity > 0:
             # loop through the dict removing the items until total_quantity is 0
             for product in group_deal_dict:
-                if group_deal_dict[product] < total_quantity:
+                if group_deal_dict.get(product) <= total_quantity:
                     total_quantity - group_deal_dict[product]
                     group_deal_dict[product] = 0
-                else
-
-
+                else:
+                    total_quantity - group
