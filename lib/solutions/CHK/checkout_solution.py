@@ -233,6 +233,9 @@ def group_deal_quantity_calculation(group_deal_dict: dict) -> int:
                         item_count -= group_deal_dict[product]
                         group_deal_dict[product] = 0
                         break
+                    else:
+                        item_count -= group_deal_dict[product] - (deal_quantity - remainder)
+                        group_deal_dict[product] = deal_quantity - remainder
                 else:
                     group_deal_dict[product] = remainder
                     item_count -= group_deal_dict[product]
@@ -262,6 +265,7 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
+
 
 
 
