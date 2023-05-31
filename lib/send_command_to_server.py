@@ -15,7 +15,7 @@ from runner.user_input_action import get_user_input
 """
   ~~~~~~~~~~ Running the system: ~~~~~~~~~~~~~
  
-    From IDE:
+    From IDE:deploy
        Run this file from the IDE.
  
     From command line:
@@ -71,3 +71,4 @@ ChallengeSession\
     .with_config(Utils.get_config())\
     .with_action_provider(lambda: get_user_input(sys.argv[1:]))\
     .start()
+

@@ -73,6 +73,10 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "KK"
         self.assertEqual(150, checkout_solution.checkout(test_string))
 
+    def test_three_ns_returns_120(self):
+        test_string = "NNN"
+        self.assertEqual(120, checkout_solution.checkout(test_string))
+
     def test_three_ns_and_one_n_returns_120(self):
         test_string = "MNNN"
         self.assertEqual(120, checkout_solution.checkout(test_string))
@@ -110,6 +114,9 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+   #  - {"method": "checkout", "params": ["NNN"], "id": "CHK_R4_105"}, expected: 120, got: 105
+
 
 
 
