@@ -230,5 +230,3 @@ def single_deal_calculation(product_price: int, product_deal_price: int, deal_qu
         total_cost = quantity * product_price
 
     return total_cost
-
-
