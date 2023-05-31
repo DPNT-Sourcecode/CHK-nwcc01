@@ -135,8 +135,3 @@ def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
     total_cost_e = quantity_e * cost_e_single
 
     return (total_cost_e, number_of_bs_free)
-
-
-
-
-
