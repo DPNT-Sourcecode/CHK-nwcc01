@@ -38,11 +38,12 @@ def parse_string(skus: str) -> Union[int, dict]:
         "B": 0,
         "C": 0,
         "D": 0,
-        "E": 0
+        "E": 0,
+        "F": 0
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
-        if char != "A" and char != "B" and char != "C" and char != "D" and char != "E":
+        if char != "A" and char != "B" and char != "C" and char != "D" and char != "E" and char != "F":
             return -1
         else:
             supermarket_item_dict[char] += 1
@@ -137,5 +138,19 @@ def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
     number_of_bs_free = math.floor(quantity_e / bulk_quantity_item_b)
     total_cost_e = quantity_e * cost_e_single
 
-    return (total_cost_e, number_of_bs_free)
+    return total_cost_e, number_of_bs_free
+
+
+def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
+    quantity_f = supermarket_item_dict["F"]
+    cost_f_single = 10
+    bulk_quantity = 3
+
+    if quantity_f >= bulk_quantity:
+        
+        pass
+    else:
+        total_cost_f = quantity_f * cost_f_single
+
+
 
