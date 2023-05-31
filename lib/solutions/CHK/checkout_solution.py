@@ -69,7 +69,6 @@ def checkout(skus: str) -> int:
             data = supermarket_item_dict.get(product_name)
             product_price = data[1]
             quantity = data[0]
-            deal_quantity = data[3]
 
             small_deal_quantity = data[3][0]
             small_deal_price = data[3][1]
@@ -318,4 +317,5 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
         total_cost = quantity * product_price
 
     return total_cost
+
 
