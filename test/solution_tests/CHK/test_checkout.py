@@ -40,11 +40,9 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_multiple_es(self):
         test_string = "EEEB"
-        # 50, 45, 20, 15, 80
         self.assertEqual(120, checkout_solution.checkout(test_string))
 
         test_string = "EEB"
-        # 50, 45, 20, 15, 80
         self.assertEqual(80, checkout_solution.checkout(test_string))
 
         test_string = "EE"
@@ -66,4 +64,5 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 

@@ -53,9 +53,6 @@ def checkout(skus: str) -> int:
 
             simple_deal_total += single_deal_calculation(product_price, deal_price, deal_quantity, quantity)
 
-
-
-
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
 
     # total_cost_c = calculate_cost_c_item(supermarket_item_dict)
@@ -78,11 +75,13 @@ def checkout(skus: str) -> int:
 def parse_string(skus: str) -> Union[int, dict]:
     """ Store number of each item in a dictionary"""
     supermarket_item_dict = {
+        "E": [0, 40, "free deal 1", [2, "B"]],
+        "N": [0, 40, "free deal 1", [3, "M"]],
+        "R": [0, 50, "free deal 1", [3, "Q"]],
         "A": [0, 50, "deal"],
         "B": [0, 30, "simple deal", [2, 45]],
         "C": [0, 20, "single"],
         "D": [0, 15, "single"],
-        "E": [0, 40, "free deal 1", [2, "B"]],
         "F": [0, 10, "deal"],
         "G": [0, 20, "single"],
         "H": [0, 10, "deal"],
@@ -91,11 +90,9 @@ def parse_string(skus: str) -> Union[int, dict]:
         "K": [0, 80, "simple deal", [2, 150]],
         "L": [0, 90, "single"],
         "M": [0, 15, "single"],
-        "N": [0, 40, "free deal 1", [3, "M"]],
         "O": [0, 10, "single"],
         "P": [0, 50, "simple deal", [5, 200]],
         "Q": [0, 30, "simple deal", [3, 80]],
-        "R": [0, 50, "free deal 1", [3, "Q"]],
         "S": [0, 30, "single"],
         "T": [0, 20, "single"],
         "U": [0, 40, "deal"],
@@ -252,5 +249,6 @@ def other_item_free_deal_calculation(quantity: int, deal_quantity: int, product_
     total_cost = quantity * product_price
 
     return total_cost, number_of_free_items
+
 
 
