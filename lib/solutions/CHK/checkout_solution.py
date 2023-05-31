@@ -4,20 +4,6 @@ from typing import Union
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-""" Items which have deals that don't affect others"""
-# A, B, F, H, K, P, Q, U, V
-
-""" Items with deals that do affect others """
-# E, N, R#
-
-""" Items with single deals """
-# B, K, P, Q
-
-"""Items with no deals"""
-
-
-# C, D, G, I, J, L, M, O, S, T, W, X, Y, Z
-
 
 def checkout(skus: str) -> int:
     supermarket_item_dict = parse_string(skus)
@@ -79,20 +65,6 @@ def checkout(skus: str) -> int:
             complex_deal_total += complex_deal_calculation(product_price, small_deal_price, large_deal_price,
                                                            small_deal_quantity, large_deal_quantity, quantity)
 
-    # total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
-
-    # total_cost_c = calculate_cost_c_item(supermarket_item_dict)
-    #
-    # total_cost_d = calculate_cost_d_item(supermarket_item_dict)
-
-    # total_cost_e = calculate_cost_e_item(supermarket_item_dict)[0]
-    # number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
-    #
-    # supermarket_item_dict["B"][0] -= number_of_bs_free
-    # total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
-
-    # total_cost_f = calculate_cost_f_item(supermarket_item_dict)
-
     total_cost = complex_deal_total + simple_deal_total + easy_ones_total + free_deal_1_total + free_deal_2_total
 
     return total_cost
@@ -138,112 +110,6 @@ def parse_string(skus: str) -> Union[int, dict]:
             supermarket_item_dict[char][0] += 1
 
     return supermarket_item_dict
-
-
-def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
-    quantity_a = supermarket_item_dict["A"][0]
-    cost_a_single = 50
-    bulk_price_a_three = 130
-    bulk_quantity_a_three = 3
-    bulk_quantity_a_five = 5
-    bulk_price_a_five = 200
-
-    # check if there is more than 2 a items bought to calculate deal price
-    if 2 < quantity_a < bulk_quantity_a_five:
-        if quantity_a % bulk_quantity_a_three == 0:
-            # they have bought a multiple 3 amount of item A
-            total_cost_a = (quantity_a / bulk_quantity_a_three) * bulk_price_a_three
-
-        else:
-            total_cost_a = (math.floor(quantity_a / bulk_quantity_a_three) * bulk_price_a_three) \
-                           + ((quantity_a % bulk_quantity_a_three) * cost_a_single)
-    # check if they have bought a multiple of 5
-    elif quantity_a >= bulk_quantity_a_five:
-        # check if exactly divisible by 5
-        if quantity_a % bulk_quantity_a_five == 0:
-            total_cost_a = (quantity_a / bulk_quantity_a_five) * bulk_price_a_five
-        else:
-            # check the remainder is not a multiple of 3
-            remainder = quantity_a % bulk_quantity_a_five
-            if remainder >= bulk_quantity_a_three:
-                single_purchases = remainder - bulk_quantity_a_three
-                total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
-                               + bulk_price_a_three + (single_purchases * cost_a_single)
-            else:
-                total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
-                               + (remainder * cost_a_single)
-    else:
-        total_cost_a = quantity_a * cost_a_single
-
-    return total_cost_a
-
-
-def calculate_cost_of_b_item(supermarket_item_dict: dict) -> int:
-    quantity_b = supermarket_item_dict["B"][0]
-    cost_b_single = 30
-    bulk_price_b = 45
-    bulk_quantity_b = 2
-
-    # check if there is more than 1 B items bought to calculate deal price
-    if quantity_b > 1:
-        if quantity_b % bulk_quantity_b == 0:
-            # they have bought a multiple 2 amount of item B
-            total_cost_b = (quantity_b / bulk_quantity_b) * bulk_price_b
-
-        else:
-            total_cost_b = (math.floor(quantity_b / bulk_quantity_b) * bulk_price_b) \
-                           + ((quantity_b % bulk_quantity_b) * cost_b_single)
-    elif quantity_b < 0:
-        total_cost_b = 0
-        return total_cost_b
-    else:
-        total_cost_b = quantity_b * cost_b_single
-
-    return total_cost_b
-
-
-def calculate_cost_c_item(supermarket_item_dict: dict) -> int:
-    quantity_c = supermarket_item_dict["C"][0]
-    cost_c_single = supermarket_item_dict["C"][1]
-
-    total_cost_c = quantity_c * cost_c_single
-
-    return total_cost_c
-
-
-def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
-    quantity_d = supermarket_item_dict["D"][0]
-    cost_d_single = 15
-    total_cost_d = quantity_d * cost_d_single
-
-    return total_cost_d
-
-
-def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
-    quantity_e = supermarket_item_dict["E"][0]
-    cost_e_single = 40
-    bulk_quantity_item_b = 2
-
-    number_of_bs_free = math.floor(quantity_e / bulk_quantity_item_b)
-    total_cost_e = quantity_e * cost_e_single
-
-    return total_cost_e, number_of_bs_free
-
-
-def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
-    quantity_f = supermarket_item_dict["F"][0]
-    cost_f_single = 10
-    bulk_quantity = 3
-
-    if quantity_f >= bulk_quantity:
-        quantity_of_free_f_items = math.floor(quantity_f / bulk_quantity)
-        f_items_to_pay_for = quantity_f - quantity_of_free_f_items
-        total_cost_f = f_items_to_pay_for * cost_f_single
-
-    else:
-        total_cost_f = quantity_f * cost_f_single
-
-    return total_cost_f
 
 
 def simple_price_calculation(product_price: int, quantity: int) -> int:
@@ -317,3 +183,4 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
         total_cost = quantity * product_price
 
     return total_cost
+
