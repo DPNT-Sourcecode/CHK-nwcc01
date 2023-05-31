@@ -213,28 +213,29 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
 def group_deal_quantity_calculation(group_deal_dict: dict) -> int:
     deal_quantity = 3
     deal_cost = 45
-    total_quantity = sum(group_deal_dict.values())
+    original_quantity = sum(group_deal_dict.values())
+    item_count = original_quantity
 
-    if total_quantity % deal_quantity == 0:
+    if item_count % deal_quantity == 0:
         # exact number of products for the deal
-        total_cost = (total_quantity / deal_quantity) * deal_cost
+        total_cost = (item_count / deal_quantity) * deal_cost
 
     else:
         # there are items remaining which need to paid at normal price
         # prioritise the most expensive item
-        remainder = total_quantity % deal_quantity
-        while total_quantity > remainder:
+        remainder = item_count % deal_quantity
+        while item_count > remainder:
             for product in group_deal_dict:
             # loop through the dict removing the items until total_quantity is 0
 
-                if group_deal_dict[product] < total_quantity:
-                    total_quantity -= group_deal_dict[product]
+                if group_deal_dict[product] < item_count:
+                    item_count -= group_deal_dict[product]
                     group_deal_dict[product] = 0
                 else:
                     group_deal_dict[product] -= remainder
-                    total_quantity -= group_deal_dict[product]
+                    item_count -= group_deal_dict[product]
 
-        total_cost = (math.floor(total_quantity / deal_quantity) * deal_cost) + group_deal_remainder_cost_calculation(
+        total_cost = (math.floor(original_quantity / deal_quantity) * deal_cost) + group_deal_remainder_cost_calculation(
             group_deal_dict)
 
     return total_cost
@@ -251,10 +252,3 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
-
-
-
-
-
-
-

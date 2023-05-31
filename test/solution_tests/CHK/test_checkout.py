@@ -121,7 +121,11 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_two_zs_and_two_xs_returns_62(self):
         test_string = "ZZXX"
-        self.assertEqual(45, checkout_solution.checkout(test_string))
+        self.assertEqual(62, checkout_solution.checkout(test_string))
+
+    def test_lots_of_deal_items_return_the_correct_amount(self):
+        test_string = "ZZXX"
+        self.assertEqual(62, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
