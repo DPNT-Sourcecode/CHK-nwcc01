@@ -224,10 +224,10 @@ def group_deal_quantity_calculation(group_deal_dict: dict) -> int:
         # prioritise the most expensive item
         remainder = total_quantity % deal_quantity
         for product in group_deal_dict:
-            while total_quantity >= deal_quantity:
+            while total_quantity >= remainder:
             # loop through the dict removing the items until total_quantity is 0
-            
-                if group_deal_dict[product] <= total_quantity:
+
+                if group_deal_dict[product] < total_quantity:
                     total_quantity -= group_deal_dict[product]
                     group_deal_dict[product] = 0
                 else:
@@ -251,6 +251,7 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
+
 
 
 
