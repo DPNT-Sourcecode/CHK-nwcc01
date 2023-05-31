@@ -21,13 +21,20 @@ def checkout(skus: str) -> int:
     if supermarket_item_dict == -1:
         return -1
 
+    for product_name, dara
+
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
-    total_cost_c = calculate_cost_c_item(supermarket_item_dict)
-    total_cost_d = calculate_cost_d_item(supermarket_item_dict)
+
+    # total_cost_c = calculate_cost_c_item(supermarket_item_dict)
+    #
+    # total_cost_d = calculate_cost_d_item(supermarket_item_dict)
+
     total_cost_e = calculate_cost_e_item(supermarket_item_dict)[0]
     number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
+
     supermarket_item_dict["B"][0] -= number_of_bs_free
     total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
+
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
     total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e + total_cost_f
@@ -38,32 +45,32 @@ def checkout(skus: str) -> int:
 def parse_string(skus: str) -> Union[int, dict]:
     """ Store number of each item in a dictionary"""
     supermarket_item_dict = {
-        "A": [0, 50],
-        "B": [0, 30],
-        "C": [0, 20],
-        "D": [0, 15],
-        "E": [0, 40],
-        "F": [0, 10],
-        "G": [0, 20],
-        "H": [0, 10],
-        "I": [0, 35],
-        "J": [0, 60],
-        "K": [0, 80],
-        "L": [0, 90],
-        "M": [0, 15],
-        "N": [0, 40],
-        "O": [0, 10],
-        "P": [0, 50],
-        "Q": [0, 30],
-        "R": [0, 50],
-        "S": [0, 30],
-        "T": [0, 20],
-        "U": [0, 40],
-        "V": [0, 50],
-        "W": [0, 20],
-        "X": [0, 90],
-        "Y": [0, 10],
-        "Z": [0, 50]
+        "A": [0, 50, "deal"],
+        "B": [0, 30, "deal"],
+        "C": [0, 20, "single"],
+        "D": [0, 15, "single"],
+        "E": [0, 40, "deal"],
+        "F": [0, 10, "deal"],
+        "G": [0, 20, "single"],
+        "H": [0, 10, "deal"],
+        "I": [0, 35, "single"],
+        "J": [0, 60, "single"],
+        "K": [0, 80, "deal"],
+        "L": [0, 90, "single"],
+        "M": [0, 15, "single"],
+        "N": [0, 40, "deal"],
+        "O": [0, 10, "single"],
+        "P": [0, 50, "deal"],
+        "Q": [0, 30, "deal"],
+        "R": [0, 50, "deal"],
+        "S": [0, 30, "single"],
+        "T": [0, 20, "single"],
+        "U": [0, 40, "deal"],
+        "V": [0, 50, "deal"],
+        "W": [0, 20, "single"],
+        "X": [0, 90, "single"],
+        "Y": [0, 10, "single"],
+        "Z": [0, 50, "single"]
 
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
@@ -189,6 +196,7 @@ def calculate_the_easy_ones(supermarket_item_dict: dict, product_name: str, quan
     total_cost = quantity * product_price
 
     return total_cost
+
 
 
 
