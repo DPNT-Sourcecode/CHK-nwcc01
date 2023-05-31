@@ -85,11 +85,18 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "QQQ"
         self.assertEqual(80, checkout_solution.checkout(test_string))
 
-    def test_three_rs_return_100(self):
+    def test_multiple_rs_and_qs_return_the_right_value(self):
         test_string = "RRRQ"
         self.assertEqual(150, checkout_solution.checkout(test_string))
+
+        test_string = "RRRQQ"
+        self.assertEqual(180, checkout_solution.checkout(test_string))
+
+        test_string = "RRRQQQ"
+        self.assertEqual(210, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
