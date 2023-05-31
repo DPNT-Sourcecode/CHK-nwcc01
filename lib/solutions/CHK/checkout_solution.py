@@ -91,7 +91,7 @@ def parse_string(skus: str) -> Union[int, dict]:
         "B": [0, 30, "simple deal", [2, 45]],
         "C": [0, 20, "single"],
         "D": [0, 15, "single"],
-        "F": [0, 10, "free deal 2", 2],
+        "F": [0, 10, "free deal 2", 3],
         "G": [0, 20, "single"],
         "H": [0, 10, "deal"],
         "I": [0, 35, "single"],
@@ -104,7 +104,7 @@ def parse_string(skus: str) -> Union[int, dict]:
         "Q": [0, 30, "simple deal", [3, 80]],
         "S": [0, 30, "single"],
         "T": [0, 20, "single"],
-        "U": [0, 40, "free deal 2", 3],
+        "U": [0, 40, "free deal 2", 4],
         "V": [0, 50, "deal"],
         "W": [0, 20, "single"],
         "X": [0, 90, "single"],
@@ -261,7 +261,6 @@ def other_item_free_deal_calculation(quantity: int, deal_quantity: int, product_
 
 
 def same_item_free_deal_calculation(quantity: int, deal_quantity: int, product_price: int) -> int:
-
     if quantity >= deal_quantity:
         quantity_of_free_items = math.floor(quantity / deal_quantity)
         items_to_pay_for = quantity - quantity_of_free_items
@@ -271,8 +270,3 @@ def same_item_free_deal_calculation(quantity: int, deal_quantity: int, product_p
         total_cost = quantity * product_price
 
     return total_cost
-
-
-
-
-

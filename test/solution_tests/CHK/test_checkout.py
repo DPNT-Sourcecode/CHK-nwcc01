@@ -49,7 +49,7 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         # 50, 45, 20, 15, 80
         self.assertEqual(80, checkout_solution.checkout(test_string))
 
-    def test_when_five_f_items_are_bought_only_four_are_paid_for(self):
+    def test_when_five_f_items_are_bought_only_three_are_paid_for(self):
         test_string = "FFFFF"
         self.assertEqual(40, checkout_solution.checkout(test_string))
 
@@ -58,11 +58,10 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         self.assertEqual(50, checkout_solution.checkout(test_string))
 
     def test_when_two_f_items_are_bought_two_are_paid_for(self):
-        test_string = "FF"
-        self.assertEqual(20, checkout_solution.checkout(test_string))
+        test_string = "FFUUUU"
+        self.assertEqual(160, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
-
 
