@@ -116,6 +116,34 @@ def checkout(skus: str) -> int:
 
 def parse_string(skus: str) -> Union[int, dict]:
     """ Store number of each item in a dictionary"""
+    supermarket_item_dict = {
+        "E": [0, 40, "free deal 1", [2, "B"]],
+        "N": [0, 40, "free deal 1", [3, "M"]],
+        "R": [0, 50, "free deal 1", [3, "Q"]],
+        "A": [0, 50, "complex deal", [3, 130], [5, 200]],
+        "B": [0, 30, "simple deal", [2, 45]],
+        "C": [0, 20, "single"],
+        "D": [0, 15, "single"],
+        "F": [0, 10, "free deal 2", 3],
+        "G": [0, 20, "single"],
+        "H": [0, 10, "complex deal", [5, 45], [10, 80]],
+        "I": [0, 35, "single"],
+        "J": [0, 60, "single"],
+        "K": [0, 80, "simple deal", [2, 150]],
+        "L": [0, 90, "single"],
+        "M": [0, 15, "single"],
+        "O": [0, 10, "single"],
+        "P": [0, 50, "simple deal", [5, 200]],
+        "Q": [0, 30, "simple deal", [3, 80]],
+        "S": [0, 20, "group deal"],
+        "T": [0, 20, "group deal"],
+        "U": [0, 40, "free deal 2", 4],
+        "V": [0, 50, "complex deal", [2, 90], [3, 130]],
+        "W": [0, 20, "single"],
+        "X": [0, 17, "group deal"],
+        "Y": [0, 20, "group deal"],
+        "Z": [0, 21, "group deal"]
+    }
 
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
@@ -255,5 +283,6 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
+
 
 
