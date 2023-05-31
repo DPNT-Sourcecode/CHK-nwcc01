@@ -17,7 +17,14 @@ def checkout(skus: str) -> int:
     free_deal_1_total = 0
     free_deal_2_total = 0
     complex_deal_total = 0
-    group_deal_dict = {}
+
+    group_deal_dict = {
+        "Z": 0,
+        "S": 0
+        "Y": 0,
+        "T": 0,
+        "X": 0
+    }
     for product_name in supermarket_item_dict:
         if supermarket_item_dict[product_name][2] == "free deal 1":
             data = supermarket_item_dict.get(product_name)
@@ -211,4 +218,13 @@ def group_deal_calculation(group_deal_dict: dict) -> int:
 
     else:
         # there are items remaining which need to paid at normal price
+        # prioritise the most expensive item
+        while total_quantity > 0:
+            # loop through the dict removing the items until total_quantity is 0
+            for product in group_deal_dict:
+                if group_deal_dict[product] < total_quantity:
+                    total_quantity - group_deal_dict[product]
+                    group_deal_dict[product] = 0
+                else
+
 
