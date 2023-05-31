@@ -125,12 +125,16 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_lots_of_deal_items_return_the_correct_amount(self):
         test_string = "ZZXXSTZT"
-        self.assertEqual(62, checkout_solution.checkout(test_string))
+        self.assertEqual(124, checkout_solution.checkout(test_string))
+
+        test_string = "ZZXXSTZTYY"
+        self.assertEqual(124, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
 
    #  - {"method": "checkout", "params": ["NNN"], "id": "CHK_R4_105"}, expected: 120, got: 105
+
 
 
