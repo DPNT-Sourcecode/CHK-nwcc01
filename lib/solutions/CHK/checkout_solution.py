@@ -113,7 +113,10 @@ def parse_string(skus: str) -> Union[int, dict]:
 
 
 def simple_price_calculation(product_price: int, quantity: int) -> int:
-    total_cost = quantity * product_price
+    if quantity < 0:
+        total_cost = 0
+    else:
+        total_cost = quantity * product_price
 
     return total_cost
 
@@ -136,8 +139,9 @@ def single_deal_calculation(product_price: int, product_deal_price: int, deal_qu
 
 
 def other_item_free_deal_calculation(quantity: int, deal_quantity: int, product_price: int) -> tuple:
-    number_of_free_items = math.floor(quantity / deal_quantity)
-    total_cost = quantity * product_price
+    if quantity > 0:
+        number_of_free_items = math.floor(quantity / deal_quantity)
+        total_cost = quantity * product_price
 
     return total_cost, number_of_free_items
 
@@ -148,6 +152,9 @@ def same_item_free_deal_calculation(quantity: int, deal_quantity: int, product_p
         items_to_pay_for = quantity - quantity_of_free_items
         total_cost = items_to_pay_for * product_price
 
+    elif quantity < 0:
+        total_cost = 0
+        return total_cost
     else:
         total_cost = quantity * product_price
 
@@ -178,9 +185,13 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
             else:
                 total_cost = (math.floor(quantity / large_deal_quantity) * large_product_deal_price) \
                              + (remainder * product_price)
+    elif quantity < 0:
+        total_cost = 0
+        return total_cost
     else:
 
         total_cost = quantity * product_price
 
     return total_cost
+
 
