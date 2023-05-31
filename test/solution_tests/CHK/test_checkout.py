@@ -24,11 +24,15 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         self.assertEqual(45, checkout_solution.checkout(test_string))
 
     def test_a_more_complicated_order(self):
-        test_string =
+        test_string = "ABCDCBAABCABBAAA"
+        # 7As, 5Bs, 3Cs, 1D
+        # 310, 120, 60, 15
+        self.assertEqual(sum([310, 120, 60, 15]), checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 
