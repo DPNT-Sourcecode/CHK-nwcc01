@@ -157,6 +157,3 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
         total_cost_f = quantity_f * cost_f_single
 
     return total_cost_f
-
-
-
