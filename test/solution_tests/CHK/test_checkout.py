@@ -33,8 +33,14 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         # 300, 120, 60, 15
         self.assertEqual(sum([300, 120, 60, 15]), checkout_solution.checkout(test_string))
 
+    def test_more_bs_are_added_when_atleast_2_es_are_bought(self):
+        test_string = "ABCDEE"
+        # 50, 45, 20, 15, 80
+        self.assertEqual(sum([50, 45, 20, 15, 80]), checkout_solution.checkout(test_string))
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
