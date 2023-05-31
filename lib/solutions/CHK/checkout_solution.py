@@ -14,7 +14,7 @@ def checkout(skus: str) -> int:
         return -1
 
     # calculate the cost of A items
-    total_cost_a = calcualte_cost_of_a_item(supermarket_item_dict)
+    total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
     # calculate the cost of B items
     total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
     # Calculate cost of C items
@@ -45,7 +45,7 @@ def parse_string(skus: str) -> Union[int, dict]:
     return supermarket_item_dict
 
 
-def calcualte_cost_of_a_item(supermarket_item_dict: dict) -> int:
+def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
     quantity_a = supermarket_item_dict["A"]
     cost_a_single = 50
     bulk_price_a_three = 130
@@ -119,4 +119,5 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
     total_cost_d = quantity_d * cost_d_single
 
     return total_cost_d
+
 
