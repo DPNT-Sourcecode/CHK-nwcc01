@@ -70,13 +70,13 @@ def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
         else:
             # check the remainder is not a multiple of 3
             remainder = quantity_a % bulk_quantity_a_five
-            single_purchases = remainder - bulk_quantity_a_three
             if remainder >= bulk_quantity_a_three:
+                single_purchases = remainder - bulk_quantity_a_three
                 total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
                                + bulk_price_a_three + (single_purchases * cost_a_single)
             else:
                 total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
-                               + (single_purchases * cost_a_single)
+                               + (remainder * cost_a_single)
     else:
         total_cost_a = quantity_a * cost_a_single
 
@@ -119,5 +119,6 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
     total_cost_d = quantity_d * cost_d_single
 
     return total_cost_d
+
 
 
