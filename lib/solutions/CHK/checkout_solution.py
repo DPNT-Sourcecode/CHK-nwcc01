@@ -26,7 +26,7 @@ def checkout(skus: str) -> int:
     total_cost_d = calculate_cost_d_item(supermarket_item_dict)
     total_cost_e = calculate_cost_e_item(supermarket_item_dict)[0]
     number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
-    supermarket_item_dict["B"] -= number_of_bs_free
+    supermarket_item_dict["B"][0] -= number_of_bs_free
     total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
@@ -78,7 +78,7 @@ def parse_string(skus: str) -> Union[int, dict]:
 
 
 def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
-    quantity_a = supermarket_item_dict["A"]
+    quantity_a = supermarket_item_dict["A"][0]
     cost_a_single = 50
     bulk_price_a_three = 130
     bulk_quantity_a_three = 3
@@ -116,7 +116,7 @@ def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
 
 
 def calculate_cost_of_b_item(supermarket_item_dict: dict) -> int:
-    quantity_b = supermarket_item_dict["B"]
+    quantity_b = supermarket_item_dict["B"][0]
     cost_b_single = 30
     bulk_price_b = 45
     bulk_quantity_b = 2
@@ -140,8 +140,8 @@ def calculate_cost_of_b_item(supermarket_item_dict: dict) -> int:
 
 
 def calculate_cost_c_item(supermarket_item_dict: dict) -> int:
-    quantity_c = supermarket_item_dict["C"]
-    cost_c_single = 20
+    quantity_c = supermarket_item_dict["C"][0]
+    cost_c_single = supermarket_item_dict["C"][1]
 
     total_cost_c = quantity_c * cost_c_single
 
@@ -149,7 +149,7 @@ def calculate_cost_c_item(supermarket_item_dict: dict) -> int:
 
 
 def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
-    quantity_d = supermarket_item_dict["D"]
+    quantity_d = supermarket_item_dict["D"][0]
     cost_d_single = 15
     total_cost_d = quantity_d * cost_d_single
 
@@ -157,7 +157,7 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
 
 
 def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
-    quantity_e = supermarket_item_dict["E"]
+    quantity_e = supermarket_item_dict["E"][0]
     cost_e_single = 40
     bulk_quantity_item_b = 2
 
@@ -168,7 +168,7 @@ def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
 
 
 def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
-    quantity_f = supermarket_item_dict["F"]
+    quantity_f = supermarket_item_dict["F"][0]
     cost_f_single = 10
     bulk_quantity = 3
 
@@ -182,8 +182,13 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
 
     return total_cost_f
 
-def calculate_the_easy_ones(product_name: str, quantity: int) -> int:
 
+def calculate_the_easy_ones(supermarket_item_dict: dict, product_name: str, quantity: int) -> int:
+
+    product_price = supermarket_item_dict.get(product_name)[1]
     total_cost = quantity * product_price
+
+    return total_cost
+
 
 
