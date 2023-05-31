@@ -17,7 +17,7 @@ def checkout(skus: str) -> int:
     free_deal_1_total = 0
     free_deal_2_total = 0
     complex_deal_total = 0
-    group_deal_count = 0
+    group_deal_dict = {}
     for product_name in supermarket_item_dict:
         if supermarket_item_dict[product_name][2] == "free deal 1":
             data = supermarket_item_dict.get(product_name)
@@ -68,7 +68,7 @@ def checkout(skus: str) -> int:
 
         elif supermarket_item_dict[product_name][2] == "group deal":
             data = supermarket_item_dict.get(product_name)
-            group_deal_count += data[0]
+            group_deal_dict[product_name] = data[0]
 
 
     total_cost = complex_deal_total + simple_deal_total + easy_ones_total + free_deal_1_total + free_deal_2_total
@@ -200,12 +200,15 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
     return total_cost
 
 
-def group_deal_calculation(total_quantity: int, s_quantity: int, t_quantity: int, x_quantity: int, y_quantity: int,
-                           z_quantity: int) -> int:
+def group_deal_calculation(group_deal_dict: dict) -> int:
     deal_quantity = 3
     deal_cost = 45
-    number_of_s_t_x_y_z = total_quantity
+    total_quantity = sum(group_deal_dict.values())
 
     if total_quantity % deal_quantity == 0:
         # exact number of products for the deal
-        total_cost =
+        total_cost = (total_quantity / deal_quantity) * deal_cost
+
+    else:
+        # there are items remaining which need to paid at normal price
+
