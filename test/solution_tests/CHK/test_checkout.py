@@ -111,14 +111,23 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "VVV"
         self.assertEqual(130, checkout_solution.checkout(test_string))
 
-    def test_three_ss_return_135(self):
+    def test_three_ss_return_45(self):
         test_string = "SSS"
-        self.assertEqual(130, checkout_solution.checkout(test_string))
+        self.assertEqual(45, checkout_solution.checkout(test_string))
+
+    def test_two_ss_and_a_t_returns_45(self):
+        test_string = "SST"
+        self.assertEqual(45, checkout_solution.checkout(test_string))
+
+    def test_two_zs_and_two_xs_returns_62(self):
+        test_string = "ZZXX"
+        self.assertEqual(45, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
 
    #  - {"method": "checkout", "params": ["NNN"], "id": "CHK_R4_105"}, expected: 120, got: 105
+
 
 
