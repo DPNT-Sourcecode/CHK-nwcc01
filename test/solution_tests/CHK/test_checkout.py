@@ -117,6 +117,3 @@ if __name__ == '__main__':
 
    #  - {"method": "checkout", "params": ["NNN"], "id": "CHK_R4_105"}, expected: 120, got: 105
 
-
-
-
