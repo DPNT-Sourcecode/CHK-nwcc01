@@ -47,22 +47,28 @@ def parse_string(skus: str) -> Union[int, dict]:
 def calcualte_cost_of_a_item(supermarket_item_dict: dict) -> int:
     quantity_a = supermarket_item_dict["A"]
     cost_a_single = 50
-    bulk_price_a = 130
-    old_bulk_quantity_a = 3
-    new_bulk_quantity_a = 5
+    bulk_price_a_three = 130
+    bulk_quantity_a_three = 3
+    bulk_quantity_a_five = 5
+    bulk_price_a_five = 200
 
     # check if there is more than 2 a items bought to calculate deal price
-    if 2 < quantity_a < new_bulk_quantity_a:
-        if quantity_a % old_bulk_quantity_a == 0:
+    if 2 < quantity_a < bulk_quantity_a_five:
+        if quantity_a % bulk_quantity_a_three == 0:
             # they have bought a multiple 3 amount of item A
-            total_cost_a = (quantity_a / old_bulk_quantity_a) * bulk_price_a
+            total_cost_a = (quantity_a / bulk_quantity_a_three) * bulk_price_a_three
 
         else:
-            total_cost_a = (math.floor(quantity_a / old_bulk_quantity_a) * bulk_price_a) \
-                           + ((quantity_a % old_bulk_quantity_a) * cost_a_single)
+            total_cost_a = (math.floor(quantity_a / bulk_quantity_a_three) * bulk_price_a_three) \
+                           + ((quantity_a % bulk_quantity_a_three) * cost_a_single)
     # check if they have bought a multiple of 5
-    elif quantity_a >= new_bulk_quantity_a:
-        
+    elif quantity_a >= bulk_quantity_a_five:
+        # check if exactly divisble by 5
+        if quantity_a % bulk_quantity_a_five == 0:
+            total_cost_a = (quantity_a / bulk_quantity_a_five) * bulk_price_a_five
+        else:
+            # check the remainder is not a multiple of 3
+            if quantity_a % 5 == 3
     else:
         total_cost_a = quantity_a * cost_a_single
 
@@ -105,5 +111,6 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
     total_cost_d = quantity_d * cost_d_single
 
     return total_cost_d
+
 
 
