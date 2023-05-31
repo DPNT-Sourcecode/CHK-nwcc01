@@ -42,7 +42,7 @@ def checkout(skus: str) -> int:
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
-        if char != "A" or char != "B" or char != "C" or char != "D":
+        if char != "A" and char != "B" and char != "C" and char != "D":
             return -1
         else:
             supermarket_item_dict[char] += 1
@@ -104,4 +104,5 @@ def checkout(skus: str) -> int:
 
 
     return total_cost
+
 
