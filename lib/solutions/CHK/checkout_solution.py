@@ -25,13 +25,22 @@ def checkout(skus: str) -> int:
         return -1
 
     easy_ones_total = 0
+    simple_deal_total = 0
     for product_name in supermarket_item_dict:
         if supermarket_item_dict[product_name][2] == "single":
             data = supermarket_item_dict.get(product_name)
             product_price = data[1]
             quantity = data[0]
-
             easy_ones_total += simple_price_calculation(product_price, quantity)
+
+        elif supermarket_item_dict[product_name][2] == "simple deal":
+            data = supermarket_item_dict.get(product_name)
+            product_price = data[1]
+            quantity = data[0]
+            deal_price = data[3][1]
+            deal_quantity = data[3][0]
+
+            simple_deal_total += single_deal_calculation(product_price, deal_price, deal_quantity, quantity)
 
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
 
@@ -43,11 +52,12 @@ def checkout(skus: str) -> int:
     number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
 
     supermarket_item_dict["B"][0] -= number_of_bs_free
-    total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
+    # total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
+    # simple_deal_cost = simple_price_calculation()
 
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
-    total_cost = total_cost_a + total_cost_b + easy_ones_total + total_cost_e + total_cost_f
+    total_cost = total_cost_a + simple_deal_total + easy_ones_total + total_cost_e + total_cost_f
 
     return total_cost
 
@@ -56,7 +66,7 @@ def parse_string(skus: str) -> Union[int, dict]:
     """ Store number of each item in a dictionary"""
     supermarket_item_dict = {
         "A": [0, 50, "deal"],
-        "B": [0, 30, "deal"],
+        "B": [0, 30, "simple deal", [2, 45]],
         "C": [0, 20, "single"],
         "D": [0, 15, "single"],
         "E": [0, 40, "deal"],
@@ -65,13 +75,13 @@ def parse_string(skus: str) -> Union[int, dict]:
         "H": [0, 10, "deal"],
         "I": [0, 35, "single"],
         "J": [0, 60, "single"],
-        "K": [0, 80, "deal"],
+        "K": [0, 80, "simple deal", [2, 150]],
         "L": [0, 90, "single"],
         "M": [0, 15, "single"],
         "N": [0, 40, "deal"],
         "O": [0, 10, "single"],
-        "P": [0, 50, "deal"],
-        "Q": [0, 30, "deal"],
+        "P": [0, 50, "simple deal", [5, 200]],
+        "Q": [0, 30, "simple deal", [3, 80]],
         "R": [0, 50, "deal"],
         "S": [0, 30, "single"],
         "T": [0, 20, "single"],
@@ -204,3 +214,21 @@ def simple_price_calculation(product_price: int, quantity: int) -> int:
     total_cost = quantity * product_price
 
     return total_cost
+
+
+def single_deal_calculation(product_price: int, product_deal_price: int, deal_quantity: int, quantity: int) -> int:
+    if quantity >= deal_quantity:
+        if quantity % deal_quantity == 0:
+            # have they bought exactly the right amount for the deal
+            total_cost = (quantity / deal_quantity) * product_deal_price
+        else:
+            total_cost = (math.floor(quantity / deal_quantity) * product_deal_price) \
+                           + ((quantity % deal_quantity) * product_price)
+    elif quantity < 0:
+        total_cost = 0
+        return total_cost
+    else:
+        total_cost = quantity * product_price
+
+    return total_cost
+
