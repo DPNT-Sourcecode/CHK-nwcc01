@@ -48,17 +48,21 @@ def calcualte_cost_of_a_item(supermarket_item_dict: dict) -> int:
     quantity_a = supermarket_item_dict["A"]
     cost_a_single = 50
     bulk_price_a = 130
-    bulk_quantity_a = 3
+    old_bulk_quantity_a = 3
+    new_bulk_quantity_a = 5
 
     # check if there is more than 2 a items bought to calculate deal price
-    if quantity_a > 2:
-        if quantity_a % bulk_quantity_a == 0:
+    if 2 < quantity_a < new_bulk_quantity_a:
+        if quantity_a % old_bulk_quantity_a == 0:
             # they have bought a multiple 3 amount of item A
-            total_cost_a = (quantity_a / bulk_quantity_a) * bulk_price_a
+            total_cost_a = (quantity_a / old_bulk_quantity_a) * bulk_price_a
 
         else:
-            total_cost_a = (math.floor(quantity_a / bulk_quantity_a) * bulk_price_a) \
-                           + ((quantity_a % bulk_quantity_a) * cost_a_single)
+            total_cost_a = (math.floor(quantity_a / old_bulk_quantity_a) * bulk_price_a) \
+                           + ((quantity_a % old_bulk_quantity_a) * cost_a_single)
+    # check if they have bought a multiple of 5
+    elif quantity_a >= new_bulk_quantity_a:
+        
     else:
         total_cost_a = quantity_a * cost_a_single
 
@@ -101,4 +105,5 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
     total_cost_d = quantity_d * cost_d_single
 
     return total_cost_d
+
 
