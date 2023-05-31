@@ -27,6 +27,7 @@ def checkout(skus: str) -> int:
     easy_ones_total = 0
     simple_deal_total = 0
     free_deal_1_total = 0
+    free_deal_2_total = 0
     for product_name in supermarket_item_dict:
         if supermarket_item_dict[product_name][2] == "free deal 1":
             data = supermarket_item_dict.get(product_name)
@@ -54,6 +55,13 @@ def checkout(skus: str) -> int:
 
             simple_deal_total += single_deal_calculation(product_price, deal_price, deal_quantity, quantity)
 
+        elif supermarket_item_dict[product_name][2] == "free deal 2":
+            data = supermarket_item_dict.get(product_name)
+            product_price = data[1]
+            quantity = data[0]
+            deal_quantity = data[3]
+            free_deal_2_total += same_item_free_deal_calculation(quantity, deal_quantity, product_price)
+
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
 
     # total_cost_c = calculate_cost_c_item(supermarket_item_dict)
@@ -66,9 +74,9 @@ def checkout(skus: str) -> int:
     # supermarket_item_dict["B"][0] -= number_of_bs_free
     # total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
 
-    total_cost_f = calculate_cost_f_item(supermarket_item_dict)
+    # total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
-    total_cost = total_cost_a + simple_deal_total + easy_ones_total + free_deal_1_total + total_cost_f
+    total_cost = total_cost_a + simple_deal_total + easy_ones_total + free_deal_1_total + free_deal_2_total
 
     return total_cost
 
@@ -83,7 +91,7 @@ def parse_string(skus: str) -> Union[int, dict]:
         "B": [0, 30, "simple deal", [2, 45]],
         "C": [0, 20, "single"],
         "D": [0, 15, "single"],
-        "F": [0, 10, "deal"],
+        "F": [0, 10, "free deal 2", 2],
         "G": [0, 20, "single"],
         "H": [0, 10, "deal"],
         "I": [0, 35, "single"],
@@ -96,7 +104,7 @@ def parse_string(skus: str) -> Union[int, dict]:
         "Q": [0, 30, "simple deal", [3, 80]],
         "S": [0, 30, "single"],
         "T": [0, 20, "single"],
-        "U": [0, 40, "deal"],
+        "U": [0, 40, "free deal 2", 3],
         "V": [0, 50, "deal"],
         "W": [0, 20, "single"],
         "X": [0, 90, "single"],
@@ -250,6 +258,20 @@ def other_item_free_deal_calculation(quantity: int, deal_quantity: int, product_
     total_cost = quantity * product_price
 
     return total_cost, number_of_free_items
+
+
+def same_item_free_deal_calculation(quantity: int, deal_quantity: int, product_price: int) -> int:
+
+    if quantity >= deal_quantity:
+        quantity_of_free_items = math.floor(quantity / deal_quantity)
+        items_to_pay_for = quantity - quantity_of_free_items
+        total_cost = items_to_pay_for * product_price
+
+    else:
+        total_cost = quantity * product_price
+
+    return total_cost
+
 
 
 
