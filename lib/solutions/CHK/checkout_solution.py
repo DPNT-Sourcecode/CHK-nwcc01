@@ -51,19 +51,57 @@ def checkout(skus: str) -> int:
 
     quantity_a = supermarket_item_dict["A"]
     cost_a_single = 50
-    total_cost_a = 0
+    bulk_price_a = 130
+    bulk_quantity_a = 3
 
     # check if there is more than 2 a items bought to calculate deal price
     if quantity_a > 2:
-        if quantity_a % 3 == 0:
+        if quantity_a % bulk_quantity_a == 0:
             # they have bought a multiple 3 amount of item A
-            total_cost_a = (quantity_a / 3) * 130
+            total_cost_a = (quantity_a / bulk_quantity_a) * bulk_price_a
 
         else:
-            
+            total_cost_a = (math.floor(quantity_a / bulk_quantity_a) * bulk_price_a) \
+                           + ((quantity_a % bulk_quantity_a) * cost_a_single)
+    else:
+        total_cost_a = quantity_a * cost_a_single
+
+    # calculate the cost of B items
+
+    quantity_b = supermarket_item_dict["B"]
+    cost_b_single = 30
+    bulk_price_b = 45
+    bulk_quantity_b = 2
+
+    # check if there is more than 1 B items bought to calculate deal price
+    if quantity_b > 1:
+        if quantity_b % bulk_quantity_b == 0:
+            # they have bought a multiple 2 amount of item B
+            total_cost_b = (quantity_b / bulk_quantity_b) * bulk_price_b
+
+        else:
+            total_cost_b = (math.floor(quantity_b / bulk_quantity_b) * bulk_price_b) \
+                           + ((quantity_b % bulk_quantity_b) * cost_b_single)
+    else:
+        total_cost_b = quantity_b * cost_b_single
 
 
+    # Calculate cost of C items
+
+    quantity_c = supermarket_item_dict["C"]
+    cost_c_single = 20
+
+    total_cost_c = quantity_c * cost_c_single
+
+    # Calculate cost of D items
+
+    quantity_d = supermarket_item_dict["D"]
+    cost_d_single = 15
+
+    total_cost_d = quantity_d * cost_d_single
+
+    total_cost = cost_a_single + cost_b_single + cost_c_single + cost_d_single
 
 
+    return total_cost
 
-    return 0
