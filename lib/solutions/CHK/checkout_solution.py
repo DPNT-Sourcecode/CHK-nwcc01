@@ -5,7 +5,6 @@ from typing import Union
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-
 def checkout(skus: str) -> int:
     supermarket_item_dict = parse_string(skus)
 
@@ -157,3 +156,4 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
         total_cost_f = quantity_f * cost_f_single
 
     return total_cost_f
+
