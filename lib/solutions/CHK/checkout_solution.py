@@ -25,8 +25,10 @@ def checkout(skus: str) -> int:
     supermarket_item_dict["B"] -= number_of_bs_free
     # calculate the cost of B items
     total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
+    # calculate the cost of F items
+    total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
-    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e
+    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e + total_cost_f
 
     return total_cost
 
@@ -147,12 +149,14 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
     bulk_quantity = 3
 
     if quantity_f >= bulk_quantity:
-        remainder = quantity_f % bulk_quantity
-        total_cost_f = math.floor(quantity_f / bulk_quantity)
-        pass
+        quantity_of_free_f_items = math.floor(quantity_f / bulk_quantity)
+        f_items_to_pay_for = quantity_f - quantity_of_free_f_items
+        total_cost_f = f_items_to_pay_for * cost_f_single
+
     else:
         total_cost_f = quantity_f * cost_f_single
 
+    return total_cost_f
 
 
 

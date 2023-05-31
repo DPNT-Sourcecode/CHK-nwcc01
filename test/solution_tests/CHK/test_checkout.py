@@ -51,14 +51,11 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         # 50, 45, 20, 15, 80
         self.assertEqual(80, checkout_solution.checkout(test_string))
 
+    def test_when_five_f_items_are_bought_only_three_are_paid_for(self):
+        test_string = "FFFFF"
+        self.assertEqual(30, checkout_solution.checkout(test_string))
+
 
 if __name__ == '__main__':
     unittest.main()
 
-
-"""
-Some requests have failed (9/40). Here are some of them:
- - {"method":"checkout","params":["EE"],"id":"CHK_R2_023"}, expected: 80, got: 110
- - {"method":"checkout","params":["EEB"],"id":"CHK_R2_024"}, expected: 80, got: 125
- - {"method":"checkout","params":["EEEB"],"id":"CHK_R2_025"}, expected: 120, got: 165
- """
