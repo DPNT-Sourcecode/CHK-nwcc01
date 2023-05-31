@@ -131,9 +131,17 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "ZZXXSTZTYY"
         self.assertEqual(152, checkout_solution.checkout(test_string))
 
+    def test_some_more(self):
+        test_string = "SSSZ"
+        self.assertEqual(65, checkout_solution.checkout(test_string))
+
+        test_string = "CXYZYZC"
+        self.assertEqual(122, checkout_solution.checkout(test_string))
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 
