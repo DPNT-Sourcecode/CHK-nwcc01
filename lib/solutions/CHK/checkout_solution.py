@@ -38,42 +38,41 @@ def checkout(skus: str) -> int:
 def parse_string(skus: str) -> Union[int, dict]:
     """ Store number of each item in a dictionary"""
     supermarket_item_dict = {
-        "A": 0,
-        "B": 0,
-        "C": 0,
-        "D": 0,
-        "E": 0,
-        "F": 0,
-        "G": 0,
-        "H": 0,
-        "I": 0,
-        "J": 0,
-        "K": 0,
-        "L": 0,
-        "M": 0,
-        "N": 0,
-        "O": 0,
-        "P": 0,
-        "Q": 0,
-        "R": 0,
-        "S": 0,
-        "T": 0,
-        "U": 0,
-        "V": 0,
-        "W": 0,
-        "X": 0,
-        "Y": 0,
-        "Z": 0
+        "A": [0, 50],
+        "B": [0, 30],
+        "C": [0, 20],
+        "D": [0, 15],
+        "E": [0, 40],
+        "F": [0, 10],
+        "G": [0, 20],
+        "H": [0, 10],
+        "I": [0, 35],
+        "J": [0, 60],
+        "K": [0, 80],
+        "L": [0, 90],
+        "M": [0, 15],
+        "N": [0, 40],
+        "O": [0, 10],
+        "P": [0, 50],
+        "Q": [0, 30],
+        "R": [0, 50],
+        "S": [0, 30],
+        "T": [0, 20],
+        "U": [0, 40],
+        "V": [0, 50],
+        "W": [0, 20],
+        "X": [0, 90],
+        "Y": [0, 10],
+        "Z": [0, 50]
 
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
         quantity = supermarket_item_dict.get(char, None)
-        if quantity == None:
-        # if char != "A" and char != "B" and char != "C" and char != "D" and char != "E" and char != "F":
+        if quantity is None:
             return -1
         else:
-            supermarket_item_dict[char] += 1
+            supermarket_item_dict[char][0] += 1
 
     return supermarket_item_dict
 
@@ -183,6 +182,8 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
 
     return total_cost_f
 
-# def calculate_the_easy_ones(supermarket_item_dict: dict) -> int:
-#     total_c = supermarket_item_dict["C"] *
+def calculate_the_easy_ones(product_name: str, quantity: int) -> int:
+
+    total_cost = quantity * product_price
+
 
