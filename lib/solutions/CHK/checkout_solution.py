@@ -317,5 +317,3 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
         total_cost = quantity * product_price
 
     return total_cost
-
-
