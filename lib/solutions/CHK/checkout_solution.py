@@ -147,10 +147,12 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
     bulk_quantity = 3
 
     if quantity_f >= bulk_quantity:
-        
+        remainder = quantity_f % bulk_quantity
+        total_cost_f = math.floor(quantity_f / bulk_quantity)
         pass
     else:
         total_cost_f = quantity_f * cost_f_single
+
 
 
 
