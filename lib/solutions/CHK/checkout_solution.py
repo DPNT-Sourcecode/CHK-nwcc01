@@ -100,7 +100,7 @@ def parse_string(skus: str) -> Union[int, dict]:
         "H": [0, 10, "complex deal", [5, 45], [10, 80]],
         "I": [0, 35, "single"],
         "J": [0, 60, "single"],
-        "K": [0, 80, "simple deal", [2, 150]],
+        "K": [0, 70, "simple deal", [2, 120]],
         "L": [0, 90, "single"],
         "M": [0, 15, "single"],
         "O": [0, 10, "single"],
@@ -254,6 +254,7 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
+
 
 
 
