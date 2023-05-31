@@ -87,7 +87,3 @@ def parse_string(skus: str) -> Union[]:
             supermarket_item_dict[char] += 1
 
     return supermarket_item_dict
-
-
-
-
