@@ -11,11 +11,7 @@ from typing import Union
 # E, N, R
 
 """Items with no deals"""
-
-
 # C, D, G, I, J, L, M, O, S, T, W, X, Y, Z
-
-
 
 
 def checkout(skus: str) -> int:
@@ -25,19 +21,13 @@ def checkout(skus: str) -> int:
     if supermarket_item_dict == -1:
         return -1
 
-    # calculate the cost of A items
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
-    # Calculate cost of C items
     total_cost_c = calculate_cost_c_item(supermarket_item_dict)
-    # Calculate cost of D items
     total_cost_d = calculate_cost_d_item(supermarket_item_dict)
-    # Calculate cost of E items and number of B items free
     total_cost_e = calculate_cost_e_item(supermarket_item_dict)[0]
     number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
     supermarket_item_dict["B"] -= number_of_bs_free
-    # calculate the cost of B items
     total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
-    # calculate the cost of F items
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
     total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e + total_cost_f
@@ -190,5 +180,6 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
         total_cost_f = quantity_f * cost_f_single
 
     return total_cost_f
+
 
 
