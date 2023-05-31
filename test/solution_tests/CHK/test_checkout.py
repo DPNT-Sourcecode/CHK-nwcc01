@@ -17,11 +17,12 @@ class SupermarketCheckOutExercise(unittest.TestCase):
 
     def test_the_deal_price_for_item_a_works(self):
         test_string = "AAA"
-        self.assertEqual(checkout_solution.checkout(test_string), 130)
+        self.assertEqual(130, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 

@@ -100,9 +100,9 @@ def checkout(skus: str) -> int:
 
     total_cost_d = quantity_d * cost_d_single
 
-    total_cost = cost_a_single + cost_b_single + cost_c_single + cost_d_single
-
+    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d
 
     return total_cost
+
 
 
