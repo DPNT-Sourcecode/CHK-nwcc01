@@ -15,14 +15,17 @@ def checkout(skus: str) -> int:
 
     # calculate the cost of A items
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
-    # calculate the cost of B items
-    total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
     # Calculate cost of C items
     total_cost_c = calculate_cost_c_item(supermarket_item_dict)
     # Calculate cost of D items
     total_cost_d = calculate_cost_d_item(supermarket_item_dict)
+    # Calculate cost of E items and number of B items free
+    total_cost_e = calculate_cost_e_item(supermarket_item_dict)[0]
+    number_of_bs_free = calculate_cost_e_item(supermarket_item_dict)[1]
+    # calculate the cost of B items
+    total_cost_b = calculate_cost_of_b_item(supermarket_item_dict)
 
-    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d
+    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e
 
     return total_cost
 
@@ -33,11 +36,12 @@ def parse_string(skus: str) -> Union[int, dict]:
         "A": 0,
         "B": 0,
         "C": 0,
-        "D": 0
+        "D": 0,
+        "E": 0
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
-        if char != "A" and char != "B" and char != "C" and char != "D":
+        if char != "A" and char != "B" and char != "C" and char != "D" and char != "E":
             return -1
         else:
             supermarket_item_dict[char] += 1
@@ -119,6 +123,18 @@ def calculate_cost_d_item(supermarket_item_dict: dict) -> int:
     total_cost_d = quantity_d * cost_d_single
 
     return total_cost_d
+
+
+def calculate_cost_e_item(supermarket_item_dict: dict) -> tuple:
+    quantity_e = supermarket_item_dict["E"]
+    cost_e_single = 40
+    bulk_quantity_item_b = 2
+
+    number_of_bs_free = math.floor(quantity_e / bulk_quantity_item_b)
+    total_cost_e = quantity_e * cost_e_single
+
+    return (total_cost_e, number_of_bs_free)
+
 
 
 
