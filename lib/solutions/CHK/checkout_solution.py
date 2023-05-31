@@ -17,6 +17,7 @@ def checkout(skus: str) -> int:
     free_deal_1_total = 0
     free_deal_2_total = 0
     complex_deal_total = 0
+    group_deal_count = 0
     for product_name in supermarket_item_dict:
         if supermarket_item_dict[product_name][2] == "free deal 1":
             data = supermarket_item_dict.get(product_name)
@@ -65,6 +66,11 @@ def checkout(skus: str) -> int:
             complex_deal_total += complex_deal_calculation(product_price, small_deal_price, large_deal_price,
                                                            small_deal_quantity, large_deal_quantity, quantity)
 
+        elif supermarket_item_dict[product_name][2] == "group deal":
+            data = supermarket_item_dict.get(product_name)
+            group_deal_count += data[0]
+
+
     total_cost = complex_deal_total + simple_deal_total + easy_ones_total + free_deal_1_total + free_deal_2_total
 
     return total_cost
@@ -91,14 +97,14 @@ def parse_string(skus: str) -> Union[int, dict]:
         "O": [0, 10, "single"],
         "P": [0, 50, "simple deal", [5, 200]],
         "Q": [0, 30, "simple deal", [3, 80]],
-        "S": [0, 30, "single"],
-        "T": [0, 20, "single"],
+        "S": [0, 20, "group deal"],
+        "T": [0, 20, "group deal"],
         "U": [0, 40, "free deal 2", 4],
         "V": [0, 50, "complex deal", [2, 90], [3, 130]],
         "W": [0, 20, "single"],
-        "X": [0, 90, "single"],
-        "Y": [0, 10, "single"],
-        "Z": [0, 50, "single"]
+        "X": [0, 17, "group deal"],
+        "Y": [0, 20, "group deal"],
+        "Z": [0, 21, "group deal"]
 
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
@@ -192,3 +198,14 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
         total_cost = quantity * product_price
 
     return total_cost
+
+
+def group_deal_calculation(total_quantity: int, s_quantity: int, t_quantity: int, x_quantity: int, y_quantity: int,
+                           z_quantity: int) -> int:
+    deal_quantity = 3
+    deal_cost = 45
+    number_of_s_t_x_y_z = total_quantity
+
+    if total_quantity % deal_quantity == 0:
+        # exact number of products for the deal
+        total_cost =
