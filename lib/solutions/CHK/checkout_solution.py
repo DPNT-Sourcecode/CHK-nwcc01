@@ -8,7 +8,10 @@ from typing import Union
 # A, B, F, H, K, P, Q, U, V
 
 """ Items with deals that do affect others """
-# E, N, R
+# E, N, R#
+
+""" Items with single deals """
+# B, K, P, Q
 
 """Items with no deals"""
 # C, D, G, I, J, L, M, O, S, T, W, X, Y, Z
@@ -28,7 +31,7 @@ def checkout(skus: str) -> int:
             product_price = data[1]
             quantity = data[0]
 
-            easy_ones_total += calculate_the_easy_ones(product_price, quantity)
+            easy_ones_total += simple_price_calculation(product_price, quantity)
 
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
 
@@ -197,12 +200,7 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
     return total_cost_f
 
 
-def calculate_the_easy_ones(product_price: int, quantity: int) -> int:
+def simple_price_calculation(product_price: int, quantity: int) -> int:
     total_cost = quantity * product_price
 
     return total_cost
-
-
-
-
-
