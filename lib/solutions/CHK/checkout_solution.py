@@ -266,8 +266,3 @@ def group_deal_remainder_cost_calculation(group_deal_dict: dict) -> int:
     total_cost = sum([s_total, t_total, x_total, y_total, z_total])
 
     return total_cost
-
-
-
-
-
