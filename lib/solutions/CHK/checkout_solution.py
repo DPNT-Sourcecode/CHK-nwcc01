@@ -21,7 +21,14 @@ def checkout(skus: str) -> int:
     if supermarket_item_dict == -1:
         return -1
 
-    for product_name, dara
+    easy_ones_total = 0
+    for product_name in supermarket_item_dict:
+        if supermarket_item_dict[product_name][2] == "single":
+            data = supermarket_item_dict.get(product_name)
+            product_price = data[1]
+            quantity = data[0]
+
+            easy_ones_total += calculate_the_easy_ones(product_price, quantity)
 
     total_cost_a = calculate_cost_of_a_item(supermarket_item_dict)
 
@@ -37,7 +44,7 @@ def checkout(skus: str) -> int:
 
     total_cost_f = calculate_cost_f_item(supermarket_item_dict)
 
-    total_cost = total_cost_a + total_cost_b + total_cost_c + total_cost_d + total_cost_e + total_cost_f
+    total_cost = total_cost_a + total_cost_b + easy_ones_total + total_cost_e + total_cost_f
 
     return total_cost
 
@@ -190,12 +197,11 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
     return total_cost_f
 
 
-def calculate_the_easy_ones(supermarket_item_dict: dict, product_name: str, quantity: int) -> int:
-
-    product_price = supermarket_item_dict.get(product_name)[1]
+def calculate_the_easy_ones(product_price: int, quantity: int) -> int:
     total_cost = quantity * product_price
 
     return total_cost
+
 
 
 
