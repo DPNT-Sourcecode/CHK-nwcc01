@@ -1,9 +1,22 @@
 import math
 from typing import Union
 
-
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+""" Items which have deals that don't affect others"""
+# A, B, F, H, K, P, Q, U, V
+
+""" Items with deals that do affect others """
+# E, N, R
+
+"""Items with no deals"""
+
+
+# C, D, G, I, J, L, M, O, S, T, W, X, Y, Z
+
+
+
 
 def checkout(skus: str) -> int:
     supermarket_item_dict = parse_string(skus)
@@ -40,7 +53,28 @@ def parse_string(skus: str) -> Union[int, dict]:
         "C": 0,
         "D": 0,
         "E": 0,
-        "F": 0
+        "F": 0,
+        "G": 0,
+        "H": 0,
+        "I": 0,
+        "J": 0,
+        "K": 0,
+        "L": 0,
+        "M": 0,
+        "N": 0,
+        "O": 0,
+        "P": 0,
+        "Q": 0,
+        "R": 0,
+        "S": 0,
+        "T": 0,
+        "U": 0,
+        "V": 0,
+        "W": 0,
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+
     }
     # loop through the string to determine how many of each item is required and return -1 if an invalid input is given
     for char in skus:
@@ -80,7 +114,7 @@ def calculate_cost_of_a_item(supermarket_item_dict: dict) -> int:
             if remainder >= bulk_quantity_a_three:
                 single_purchases = remainder - bulk_quantity_a_three
                 total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
-                               + bulk_price_a_three + (single_purchases * cost_a_single)
+                                + bulk_price_a_three + (single_purchases * cost_a_single)
             else:
                 total_cost_a = (math.floor(quantity_a / bulk_quantity_a_five) * bulk_price_a_five) \
                                + (remainder * cost_a_single)
@@ -156,4 +190,5 @@ def calculate_cost_f_item(supermarket_item_dict: dict) -> int:
         total_cost_f = quantity_f * cost_f_single
 
     return total_cost_f
+
 
