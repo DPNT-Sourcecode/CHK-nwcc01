@@ -113,8 +113,10 @@ def parse_string(skus: str) -> Union[int, dict]:
 
 
 def simple_price_calculation(product_price: int, quantity: int) -> int:
-
-    total_cost = quantity * product_price
+    if quantity < 0:
+        total_cost = 0
+    else:
+        total_cost = quantity * product_price
     return total_cost
 
 
@@ -190,6 +192,7 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
         total_cost = quantity * product_price
 
     return total_cost
+
 
 
 
