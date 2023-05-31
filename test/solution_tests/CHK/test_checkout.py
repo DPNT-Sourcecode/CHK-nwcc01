@@ -69,14 +69,22 @@ class SupermarketCheckOutExercise(unittest.TestCase):
         test_string = "HHHHHHHHHH"
         self.assertEqual(80, checkout_solution.checkout(test_string))
 
-    def test_two_ks(self):
+    def test_two_ks_returns_150(self):
         test_string = "KK"
         self.assertEqual(150, checkout_solution.checkout(test_string))
 
+    def test_three_ns_and_one_n_returns_120(self):
+        test_string = "MNNN"
+        self.assertEqual(120, checkout_solution.checkout(test_string))
+
+    def test_5_ps_returns_200(self):
+        test_string = "PPPPP"
+        self.assertEqual(200, checkout_solution.checkout(test_string))
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 
