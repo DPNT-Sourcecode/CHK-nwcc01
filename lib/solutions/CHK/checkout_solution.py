@@ -20,7 +20,7 @@ def checkout(skus: str) -> int:
 
     group_deal_dict = {
         "Z": 0,
-        "S": 0
+        "S": 0,
         "Y": 0,
         "T": 0,
         "X": 0
@@ -76,6 +76,8 @@ def checkout(skus: str) -> int:
         elif supermarket_item_dict[product_name][2] == "group deal":
             data = supermarket_item_dict.get(product_name)
             group_deal_dict[product_name] = data[0]
+
+    # group_deal_quantity_calculation(group_deal_dict, )
 
 
     total_cost = complex_deal_total + simple_deal_total + easy_ones_total + free_deal_1_total + free_deal_2_total
@@ -207,7 +209,8 @@ def complex_deal_calculation(product_price: int, small_product_deal_price: int, 
     return total_cost
 
 
-def group_deal_calculation(group_deal_dict: dict) -> int:
+def group_deal_quantity_calculation(group_deal_dict: dict, s_cost: int, t_cost: int, x_cost: int, y_cost: int,
+                                    z_cost: int) -> int:
     deal_quantity = 3
     deal_cost = 45
     total_quantity = sum(group_deal_dict.values())
@@ -219,11 +222,33 @@ def group_deal_calculation(group_deal_dict: dict) -> int:
     else:
         # there are items remaining which need to paid at normal price
         # prioritise the most expensive item
-        while total_quantity > 0:
+        remainder = total_quantity % deal_quantity
+        while total_quantity >= remainder:
             # loop through the dict removing the items until total_quantity is 0
             for product in group_deal_dict:
-                if group_deal_dict.get(product) <= total_quantity:
-                    total_quantity - group_deal_dict[product]
+                if group_deal_dict[product] <= total_quantity:
                     group_deal_dict[product] = 0
+                    total_quantity - group_deal_dict[product]
                 else:
-                    total_quantity - group
+                    group_deal_dict[product] -= total_quantity
+                    total_quantity - group_deal_dict[product]
+
+        total_cost = (math.floor(total_quantity / deal_quantity) * deal_cost) + group_deal_remainder_cost_calculation(
+            group_deal_dict, s_cost, t_cost, x_cost, y_cost, z_cost)
+
+    return total_cost
+
+
+def group_deal_remainder_cost_calculation(group_deal_dict: dict, s_cost: int, t_cost: int, x_cost: int, y_cost: int,
+                                    z_cost: int) -> int:
+
+    s_total = group_deal_dict.get("S") * s_cost
+    t_total = group_deal_dict.get("T") * t_cost
+    x_total = group_deal_dict.get("X") * x_cost
+    y_total = group_deal_dict.get("Y") * y_cost
+    z_total = group_deal_dict.get("Z") * z_cost
+
+    total_cost = sum([s_total, t_total, x_total, y_total, z_total])
+
+    return total_cost
+
